@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package docGen;
+
+option go_package = "pb";
+option java_package = "com.loanstreet.grpc";
+option java_multiple_files = true;
+
+import "google/api/annotations.proto";
+
+// Document generation service definitions.
+service DocumentGenerationServices {
+  rpc TestService (TestRequest) returns (TestResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/documents"
+      body: "*"
+      response_body: "name"
+    };
+  }
+}
+
+// The request message containing the user's name.
+message TestRequest {
+  string name = 1;
+}
+
+// The response message containing the generated document
+message TestResponse {
+  string name = 1;
+}

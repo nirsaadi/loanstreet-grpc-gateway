@@ -1,0 +1,21 @@
+version: v1
+managed:
+  enabled: true
+  go_package_prefix:
+    default: grpc-gateway/proto
+    except:
+      - buf.build/googleapis/googleapis
+      - buf.build/grpc-ecosystem/grpc-gateway
+plugins:
+  - plugin: go
+    out: proto
+    opt:
+      - paths=source_relative
+  - plugin: go-grpc
+    out: proto
+    opt:
+      - paths=source_relative
+  - plugin: grpc-gateway
+    out: proto
+    opt:
+      - paths=source_relative
